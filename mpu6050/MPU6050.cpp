@@ -1,6 +1,6 @@
-#include "IMU.hpp"
+#include "MPU6050.hpp"
 
-int init(){
+int MPU6050::init(){
 
     const unsigned val[2] = {PWR_MGMT_1, 0};
     int f;
@@ -73,7 +73,7 @@ float tempConversion(int regVal){
     return static_cast<float>(regVal)/340 + 36.53;
 }
 
-accelXYZ_t readAccelXYZ(){
+accelXYZ_t MPU6050::readAccelXYZ(){
 
     accelXYZ_t ret = {0};
     ret.accel_X = accelConversion(readReg(ACCEL_XOUT_H) << 8 | readReg(ACCEL_XOUT_L));
@@ -82,7 +82,7 @@ accelXYZ_t readAccelXYZ(){
     return ret;
 }
 
-gyroXYZ_t readGyroXYZ(){
+gyroXYZ_t MPU6050::readGyroXYZ(){
 
     gyroXYZ_t ret = {0};
     ret.gyro_X = gyroConversion(readReg(GYRO_XOUT_H) << 8 | readReg(ACCEL_XOUT_L));
@@ -91,7 +91,7 @@ gyroXYZ_t readGyroXYZ(){
     return ret;
 }
 
-float readTemp(){
+float MPU6050::readTemp(){
     return tempConversion(readReg(TEMP_OUT_H) << 8 | readReg(TEMP_OUT_L));
 }
 

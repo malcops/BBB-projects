@@ -1,4 +1,4 @@
-#include "IMU.hpp"
+#include "MPU6050.hpp"
 #include "gtest/gtest.h"
 
 TEST(accelConversion, 0000) {
